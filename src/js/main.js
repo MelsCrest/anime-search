@@ -10,17 +10,19 @@ const listFav = document.querySelector('.js-fav-list');
 let animes = [];
 let favAnimes = [];
 
+//botón reset
 function handleClickReset(){
     handleDeleteFav();
     animes = [];
-    renderAnimeCard(animes);
+    renderAnimeCard();
     inputSearch.value = '';
-}
+};
 
+//botón eliminar favoritos y LS
 function handleDeleteFav(){
     favAnimes = [];
     localStorage.removeItem('favAnimes');
-    renderFavoriteCard(favAnimes);
+    renderFavoriteCard();
 };
 
 btnReset.addEventListener('click', handleClickReset);
@@ -36,8 +38,8 @@ function handleRemoveFav(ev){
     const indexAnimeFavRemove = favAnimes.findIndex((anime) => anime.mal_id === indexAnime);
     favAnimes.splice(indexAnimeFavRemove, 1);
     localStorage.setItem('favAnimes', JSON.stringify(favAnimes));
-    renderFavoriteCard(favAnimes); //actualiza las tarjetas favoritas eliminando la seleccionada
-    renderAnimeCard(animes); //actualiza las tarjetas de las series sin estilo
+    renderFavoriteCard(); //actualiza las tarjetas favoritas eliminando la seleccionada
+    renderAnimeCard(); //actualiza las tarjetas de las series sin estilo
 };
 
 const listenerBtnRemove = () => {
@@ -63,8 +65,8 @@ function handleClickFav(ev){
     //guardar en LS los animes favoritos
     localStorage.setItem('favAnimes', JSON.stringify(favAnimes));
 
-    renderAnimeCard(animes);
-    renderFavoriteCard(favAnimes);
+    renderAnimeCard();
+    renderFavoriteCard();
 };
 
 //escuchar animes favoritos
@@ -76,9 +78,9 @@ const listenerAnimes = () => {
 };
 
 //pintar las tarjetas
-function renderAnimeCard(list){
+function renderAnimeCard(){
     listAnime.innerHTML = '';
-    for(const anime of list) {
+    for(const anime of animes) {
         const src = anime.images.webp.image_url;
         const imgError = 'https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png';
 
@@ -98,10 +100,11 @@ function renderAnimeCard(list){
     }
     listenerAnimes();
 };
+
 //pintar tarjetas fav
-function renderFavoriteCard(list){
+function renderFavoriteCard(){
     listFav.innerHTML = '';
-    for(const anime of list) {
+    for(const anime of favAnimes) {
         const src = anime.images.webp.image_url;
         const imgError = 'https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png';
 
@@ -135,7 +138,7 @@ function getDataApi(animeName){
     .then((response) => response.json())
     .then((info) => {
         animes = info.data;
-        renderAnimeCard(animes); //pinto cuando me llegan los datos del servidor
+        renderAnimeCard(); //pinto cuando me llegan los datos del servidor
     });
     
 };
@@ -145,7 +148,7 @@ const dataFavAnimes = localStorage.getItem('favAnimes');
 //comprobar que la lista no está vacía
     if(dataFavAnimes){
         favAnimes = JSON.parse(dataFavAnimes);
-        renderFavoriteCard(favAnimes);
+        renderFavoriteCard();
     };
 
 btnSearch.addEventListener('click', getAnime);
