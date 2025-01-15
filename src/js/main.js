@@ -37,7 +37,10 @@ function handleClickFav(ev){
 
     if(indexAnimeFav === -1){
         favAnimes.push(animeFavSelected);//guarda
-    };
+    }else{
+        favAnimes.splice(indexAnimeFav, 1);
+    }
+    ;
     //guardar en LS los animes favoritos
     localStorage.setItem('favAnimes', JSON.stringify(favAnimes));
 
