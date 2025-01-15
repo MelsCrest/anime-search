@@ -2,11 +2,20 @@
 
 const inputSearch = document.querySelector('.js-input-search');
 const btnSearch = document.querySelector('.js-btn-search');
+const btnDeleteFav = document.querySelector('.js-btn-delete')
 const listAnime = document.querySelector('.js-anime-list');
 const listFav = document.querySelector('.js-fav-list');
 
 let animes = [];
 let favAnimes = [];
+
+function handleDeleteFav(){
+    favAnimes = [];
+    localStorage.removeItem('favAnimes');
+    renderFavoriteCard(favAnimes);
+};
+
+btnDeleteFav.addEventListener('click', handleDeleteFav);
 
 //eliminar anime favorito
 function handleRemoveFav(ev){
@@ -18,7 +27,8 @@ function handleRemoveFav(ev){
     const indexAnimeFavRemove = favAnimes.findIndex((anime) => anime.mal_id === indexAnime);
     favAnimes.splice(indexAnimeFavRemove, 1);
     localStorage.setItem('favAnimes', JSON.stringify(favAnimes));
-    renderFavoriteCard(favAnimes);
+    renderFavoriteCard(favAnimes); //actualiza las tarjetas favoritas eliminando la seleccionada
+    renderAnimeCard(animes); //actualiza las tarjetas de las series sin estilo
 };
 
 const listenerBtnRemove = () => {
@@ -104,7 +114,7 @@ function renderFavoriteCard(list){
     listenerBtnRemove();
 };
 
-//función para buscar el anime
+//Buscar el anime
 function getAnime(){
     const animeName = inputSearch.value;
     getDataApi(animeName);  
