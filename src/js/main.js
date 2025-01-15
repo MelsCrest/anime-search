@@ -8,17 +8,37 @@ const listFav = document.querySelector('.js-fav-list');
 let animes = [];
 let favAnimes = [];
 
+//eliminar anime favorito
+function handleRemoveFav(ev){
+    const btnClick = ev.currentTarget;
+    const articleElement = btnClick.parentElement;
+    const liElement = articleElement.parentElement;
+    const indexAnime = parseInt(liElement.getAttribute('id'));
+
+    const indexAnimeFavRemove = favAnimes.findIndex((anime) => anime.mal_id === indexAnime);
+    favAnimes.splice(indexAnimeFavRemove, 1);
+    localStorage.setItem('favAnimes', JSON.stringify(favAnimes));
+    renderFavoriteCard(favAnimes);
+};
+
+const listenerBtnRemove = () => {
+    const btnsRemove = document.querySelectorAll('.js-close-btn');
+    for (const button of btnsRemove) {
+        button.addEventListener('click', handleRemoveFav);
+    };
+};
+
 //guardar anime favorito
 function handleClickFav(ev){
     const animeClicked = parseInt(ev.currentTarget.id);
     const animeFavSelected = animes.find((anime) => anime.mal_id === animeClicked); //anime
-    //evitar que se nos duplique el anime fav
+    //evitar duplicar el anime en favAnimes
     const indexAnimeFav = favAnimes.findIndex((anime) => anime.mal_id === animeClicked);//-1
 
     if(indexAnimeFav === -1){
         favAnimes.push(animeFavSelected);//guarda
     };
-    //guardo en LS los animes favoritos
+    //guardar en LS los animes favoritos
     localStorage.setItem('favAnimes', JSON.stringify(favAnimes));
 
     renderAnimeCard(animes);
@@ -33,7 +53,7 @@ const listenerAnimes = () => {
     };
 };
 
-//funcior para pintar las tarjetas
+//pintar las tarjetas
 function renderAnimeCard(list){
     listAnime.innerHTML = '';
     for(const anime of list) {
@@ -67,13 +87,18 @@ function renderFavoriteCard(list){
             src = 'https://placehold.co/210x295/ffffff/666666/?text=TV';
         };
 
-        listFav.innerHTML += `<li id="${anime.mal_id}" class="js-anime">
-                                    <article>
-                                        <img src="${src}" alt="${anime.title}">
-                                        <h3>${anime.title}</h3>
-                                    </article>
-                                </li>`;
+        listFav.innerHTML += 
+        `<li id="${anime.mal_id}" class="js-anime">
+            <article>
+                <button class="js-close-btn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <img src="${src}" alt="${anime.title}">
+                <h3>${anime.title}</h3>
+            </article>
+        </li>`;
     };
+    listenerBtnRemove();
 };
 
 //función para buscar el anime
