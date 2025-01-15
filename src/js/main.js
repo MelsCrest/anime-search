@@ -2,12 +2,20 @@
 
 const inputSearch = document.querySelector('.js-input-search');
 const btnSearch = document.querySelector('.js-btn-search');
-const btnDeleteFav = document.querySelector('.js-btn-delete')
+const btnDeleteFav = document.querySelector('.js-btn-delete');
+const btnReset = document.querySelector('.js-btn-reset');
 const listAnime = document.querySelector('.js-anime-list');
 const listFav = document.querySelector('.js-fav-list');
 
 let animes = [];
 let favAnimes = [];
+
+function handleClickReset(){
+    handleDeleteFav();
+    animes = [];
+    renderAnimeCard(animes);
+    inputSearch.value = '';
+}
 
 function handleDeleteFav(){
     favAnimes = [];
@@ -15,6 +23,7 @@ function handleDeleteFav(){
     renderFavoriteCard(favAnimes);
 };
 
+btnReset.addEventListener('click', handleClickReset);
 btnDeleteFav.addEventListener('click', handleDeleteFav);
 
 //eliminar anime favorito
