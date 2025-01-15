@@ -11,16 +11,18 @@ let favAnimes = [];
 //guardar anime favorito
 function handleClickFav(ev){
     const animeClicked = parseInt(ev.currentTarget.id);
-    const animeFavSelected = animes.find((anime) => anime.mal_id === animeClicked);
-
+    const animeFavSelected = animes.find((anime) => anime.mal_id === animeClicked); //anime
     //evitar que se nos duplique el anime fav
-    const indexAnimeFav = favAnimes.findIndex((anime) => anime.mal_id === animeClicked);
+    const indexAnimeFav = favAnimes.findIndex((anime) => anime.mal_id === animeClicked);//-1
 
     if(indexAnimeFav === -1){
-        favAnimes.push(animeFavSelected);
+        favAnimes.push(animeFavSelected);//guarda
     };
-    console.log(favAnimes);
+    //guardo en LS los animes favoritos
+    localStorage.setItem('favAnimes', JSON.stringify(favAnimes));
+
     renderAnimeCard(animes);
+    renderFavoriteCard(favAnimes);
 };
 
 //escuchar animes favoritos
@@ -41,11 +43,9 @@ function renderAnimeCard(list){
         if(src === imgError){
             src = 'https://placehold.co/210x295/ffffff/666666/?text=TV';
         };
-
-        //añadir clase a la tarjeta si está en fav
-        // const findFav = favAnimes.find((animeFav)=>animeFav.id === animes.mal_id);
-
-        // let css = findFav ? 'favorite' : '';
+    //añadir clase a la tarjeta si está en fav
+        const findFav = favAnimes.find((animeFav) => animeFav.mal_id === anime.mal_id);
+        let css = findFav ? 'favorite' : '';
 
         listAnime.innerHTML += `<li id="${anime.mal_id}" class="js-anime ${css}">
                                     <article>
@@ -55,6 +55,25 @@ function renderAnimeCard(list){
                                 </li>`;
     }
     listenerAnimes();
+};
+//pintar tarjetas fav
+function renderFavoriteCard(list){
+    listFav.innerHTML = '';
+    for(const anime of list) {
+        const src = anime.images.webp.image_url;
+        const imgError = 'https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png';
+
+        if(src === imgError){
+            src = 'https://placehold.co/210x295/ffffff/666666/?text=TV';
+        };
+
+        listFav.innerHTML += `<li id="${anime.mal_id}" class="js-anime">
+                                    <article>
+                                        <img src="${src}" alt="${anime.title}">
+                                        <h3>${anime.title}</h3>
+                                    </article>
+                                </li>`;
+    };
 };
 
 //función para buscar el anime
@@ -73,6 +92,14 @@ function getDataApi(animeName){
     });
     
 };
+
+//obtener los datos de los favos en el LS
+const dataFavAnimes = localStorage.getItem('favAnimes');
+//comprobar que la lista no está vacía
+    if(dataFavAnimes){
+        favAnimes = JSON.parse(dataFavAnimes);
+        renderFavoriteCard(favAnimes);
+    };
 
 btnSearch.addEventListener('click', getAnime);
 
