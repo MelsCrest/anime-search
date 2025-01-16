@@ -2,91 +2,122 @@
 @import 'core/reset';
 @import 'layout/header';
 @import 'pages/index';
-
+body{
+    background-color: $color-black;
+}
+//JS class
 .favorite{
-    border: 6px solid green;
-    color: green;
+    border: 6px solid $color-main;
+    border-radius: 0.2rem;
+    color: $color-main;
+    font-family: $font-secondary;
+    font-weight: 600;   
+    transform: scale(1.03);
 }
+//search and buttons
 .container-buttons{
-    padding: 1rem 2rem 2rem 4rem;    
-    background-color: pink;
+    padding: 1rem 2rem 2rem 4rem;  
 }
-
+.search{
+    border: 0.15rem solid $color-main;
+    border-radius: 0.2rem;
+    height: 2rem;
+    width: 30rem;
+    margin-right: 0.7rem;
+    font-family: $font-main;
+}
 .buttons{
-    margin-right: 0.5rem;
+    margin-right: 1rem;
+    background-color: $color-main;
+    border-radius: 0.3rem;
+    height: 2rem;
+    border-color: #dbebf4;
+    color: $color-black;
+    font-weight: 500;
+    font-family: $font-main;
 }
 
-
+// list containers favorite and search
 .list-anime{
     height: 100vh;
     display: flex;
     gap: 1rem;
     justify-content: space-around;
     padding: 1rem 1.5rem;
-    background-color: blue;
     &_favorite{
         display: flex;
         flex-direction: column;
-        border: 3px solid green;
-        background-color: darkblue;
+        border: 5px solid $color-secondary;
+        border-radius: 0.4rem;
         height: auto;
         width: 20rem;
         overflow: scroll;
+        overflow-x: hidden;
     }
     &_search{
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        border: 3px solid purple;
+        border: 5px solid $color-complementary;
+        border-radius: 0.4rem;
         display: flex;
         width: 70vw;
         height: auto;
-        background-color: darkblue;
         overflow: scroll;
+        overflow-x: hidden;
     }    
 }
 
 .titles{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $font-main;
     font-weight: 1.6rem;
-    font-weight: bold;
+    font-weight: 500;
     padding: 1rem 2rem;
-    color: orange;
+    color: $color-black;
+    width: 100%;
+    &-fav{
+        background-color: $color-secondary;
+    }
+    &-res{
+        background-color: $color-complementary;
+    }
 }
-
 .list-anime_favorite ul{
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding:1.5rem 1rem;
-    background-color: lightblue;
 }
 
 .list-anime_search ul{
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: space-around;
     padding:1.5rem;
-    background-color: lightblue;
 } 
-
+// search cards
 .box{
     width: 14.5rem;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.101);
     &-card{
-        background-color: lightcoral;
         &_img{
             width: 100%;
         }
         &_title{
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: $font-secondary;
+            color: white;
+            font-family: $font-secondary;
             padding: 0.7rem;
             font-size: 1rem;
         }
     }
 }
 
+.box:hover{
+    transform: scale(1.05);
+}
+// favorite cards
 .box2{
     width: 17.5rem;
     background-color: white;
@@ -94,22 +125,43 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: lightcoral;
+        background-color: #0f0f0f;
         &_img{
             width: 40%;
         }
         &_title{
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: $font-secondary;
             padding: 0.7rem;
             font-size: 1rem;
+            color: white;
         }
         &_btn{
             width: 1.7rem;
             height: 1.7rem;
             border-radius: 50%;
             font-weight: bold;
+            color: $color-black;
             text-align: center;
+            background-color: $color-secondary;
+            border-color: #f9bbb9;
         }
     }
+}
+
+//scrollbar
+::-webkit-scrollbar {
+    width: 5px;
+}
+  /* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f130; 
+}
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }
 
