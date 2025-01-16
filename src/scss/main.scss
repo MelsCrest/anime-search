@@ -6,7 +6,6 @@
 .favorite{
     border: 3px solid green;
     color: green;
-    width: fit-content;
 }
 .container-buttons{
     padding: 1rem 2rem 2rem 2rem;    
@@ -19,26 +18,48 @@
 
 
 .list-anime{
+    height: 100vh;
     display: flex;
     gap: 1rem;
     justify-content: space-around;
     padding: 1rem 1.5rem;
     background-color: blue;
     &_favorite{
+        display: flex;
+        flex-direction: column;
         border: 3px solid green;
-        height: fit-content;
-        background-color: red;
+        background-color: darkblue;
+        height: auto;
+        width: 20rem;
+        overflow: scroll;
     }
     &_search{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         border: 3px solid purple;
         display: flex;
-        height: fit-content;
-        background-color: yellow;
+        width: 70vw;
+        height: auto;
+        background-color: darkblue;
+        overflow: scroll;
     }    
 }
 
+.titles{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 1.6rem;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    color: orange;
+}
+
 .list-anime_favorite ul{
-    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding:1.5rem 2.5rem;
+    background-color: lightblue;
 }
 
 .list-anime_search ul{
@@ -46,8 +67,24 @@
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: space-around;
-    padding: 1rem;
-    background-color: aqua;
+    padding:1.5rem;
+    background-color: lightblue;
 } 
+
+.box{
+    width: 14.5rem;
+    background-color: white;
+    &-card{
+        background-color: lightcoral;
+        &_img{
+            width: 100%;
+        }
+        &_title{
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 0.7rem;
+            font-size: 1rem;
+        }
+    }
+}
 
 

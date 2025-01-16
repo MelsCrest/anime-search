@@ -91,10 +91,10 @@ function renderAnimeCard(){
         const findFav = favAnimes.find((animeFav) => animeFav.mal_id === anime.mal_id);
         let css = findFav ? 'favorite' : '';
 
-        listAnime.innerHTML += `<li id="${anime.mal_id}" class="js-anime ${css}">
-                                    <article>
-                                        <img src="${src}" alt="${anime.title}">
-                                        <h3>${anime.title}</h3>
+        listAnime.innerHTML += `<li id="${anime.mal_id}" class="js-anime ${css} box">
+                                    <article class="box-card">
+                                        <img src="${src}" alt="${anime.title}" class="box-card_img">
+                                        <h3 class="box-card_title">${anime.title}</h3>
                                     </article>
                                 </li>`;
     }
@@ -113,13 +113,13 @@ function renderFavoriteCard(){
         };
 
         listFav.innerHTML += 
-        `<li id="${anime.mal_id}" class="js-anime">
-            <article>
-                <button class="js-close-btn">
-                    <i class="fa-solid fa-xmark"></i>
+        `<li id="${anime.mal_id}" class="js-anime box2">
+            <article class="box2-card">
+                <button class="js-close-btn box2-card_btn">
+                    <i class="fa-solid fa-xmark btn-close"></i>
                 </button>
-                <img src="${src}" alt="${anime.title}">
-                <h3>${anime.title}</h3>
+                <img src="${src}" alt="${anime.title}" class="box2-card_img">
+                <h3 class="box2-card_title">${anime.title}</h3>
             </article>
         </li>`;
     };
