@@ -1,3 +1,4 @@
+@import 'core/variables';
 @import 'core/reset';
 @import 'layout/header';
 @import 'pages/index';
@@ -7,12 +8,46 @@
     color: green;
     width: fit-content;
 }
-
-.perrito{
-    width: 150px;
+.container-buttons{
+    padding: 1rem 2rem 2rem 2rem;    
+    background-color: pink;
 }
 
-div{
+.buttons{
+    margin-right: 0.5rem;
+}
+
+
+.list-anime{
     display: flex;
+    gap: 1rem;
+    justify-content: space-around;
+    padding: 1rem 1.5rem;
+    background-color: blue;
+    &_favorite{
+        border: 3px solid green;
+        height: fit-content;
+        background-color: red;
+    }
+    &_search{
+        border: 3px solid purple;
+        display: flex;
+        height: fit-content;
+        background-color: yellow;
+    }    
 }
+
+.list-anime_favorite ul{
+    padding: 1rem;
+}
+
+.list-anime_search ul{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-around;
+    padding: 1rem;
+    background-color: aqua;
+} 
+
 

@@ -11,17 +11,25 @@
 
   <body>
       <load src="./partials/header.html"/>
-      <input type="text" class="js-input-search">
-      <button class="js-btn-search">Buscar</button>
-      <button class="js-btn-reset">Reset</button>
-      <button class="js-btn-delete">Borrar favoritos</button>
-      <div>
-      <!-- Favoritas -->
-        <ul class="js-fav-list">
-        </ul>
-      <!-- Series Anime -->
-        <ul class="js-anime-list">
-        </ul>
+      <div class="container-buttons">
+        <input type="text" class="js-input-search" placeholder="Buscar anime">
+        <button class="js-btn-search buttons buttons-search">Buscar</button>
+        <button class="js-btn-reset buttons buttons-reset">Reset</button>
+        <button class="js-btn-delete buttons buttons-fav">Borrar favoritos</button>
+      </div>
+      <div class="list-anime">
+        <!-- Favorites -->
+        <section class="list-anime_favorite">
+          <h2>Series favoritas</h2>
+          <ul class="js-fav-list">
+          </ul>
+        </section>
+        <!-- Anime Series -->
+        <section class="list-anime_search">
+          <h2>Resultados</h2>
+          <ul class="js-anime-list">
+          </ul>
+        </section>
       </div>
     <script src="./js/main.js"></script>
   </body>
