@@ -115,12 +115,12 @@ function renderFavoriteCard(){
         listFav.innerHTML += 
         `<li id="${anime.mal_id}" class="js-anime box2">
             <article class="box2-card">
-                <button class="js-close-btn box2-card_btn">
-                    <i class="fa-solid fa-xmark btn-close"></i>
-                </button>
                 <img src="${src}" alt="${anime.title}" class="box2-card_img">
                 <h3 class="box2-card_title">${anime.title}</h3>
-            </article>
+                <button class="js-close-btn box2-card_btn">
+                    ✖
+                </button>
+            </article>            
         </li>`;
     };
     listenerBtnRemove();
