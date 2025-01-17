@@ -6,9 +6,15 @@ const btnDeleteFav = document.querySelector('.js-btn-delete');
 const btnReset = document.querySelector('.js-btn-reset');
 const listAnime = document.querySelector('.js-anime-list');
 const listFav = document.querySelector('.js-fav-list');
+const btnLog = document.querySelector('.js-btn-log');
 
 let animes = [];
 let favAnimes = [];
+
+function handleLog(){
+    console.log(`Tienes ${favAnimes.length} animes favoritos`);
+};
+btnLog.addEventListener('click', handleLog);
 
 //botón reset
 function handleClickReset(){
@@ -91,10 +97,13 @@ function renderAnimeCard(){
         const findFav = favAnimes.find((animeFav) => animeFav.mal_id === anime.mal_id);
         let css = findFav ? 'favorite' : '';
 
+        let score = anime.score > 7 ? `${anime.score} Recomendada` : `${anime.score}`;
+
         listAnime.innerHTML += `<li id="${anime.mal_id}" class="js-anime ${css} box">
                                     <article class="box-card">
                                         <img src="${src}" alt="${anime.title}" class="box-card_img">
                                         <h3 class="box-card_title">${anime.title}</h3>
+                                        <h3>${score}</h3>
                                     </article>
                                 </li>`;
     }
