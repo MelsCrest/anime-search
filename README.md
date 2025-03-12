@@ -1,6 +1,6 @@
-# Evaluación final Melisa Cresta
+# ANIME SEARCH
 
-Este proyecto consiste en el desarrollo de una aplicación web de búsqueda de series de anime que permita marcar/desmarcar las series como favoritas y guardarlas en local storage. Este forma parte de la evaluación final del **Módulo 2:JAVASCRIPT** de Adalab, donde se evaluan los conocimientos adquiridos durante este módulo sobre JS.
+Este proyecto consiste en el desarrollo de una aplicación web de búsqueda de series de anime que permita marcar/desmarcar las series como favoritas y guardarlas en local storage. 
 
 Las técnologías y lenguajes usados para la realización de este proyecto han sido:
 
@@ -63,8 +63,6 @@ $ npm start
 ## PUBLICACIÓN 
 Primero generamos la página para producción. En la terminal BASH introducimos los comandos:
 ~~~
-$ npm run build
 $ npm run push-docs
-$ npm run deploy
 ~~~
 A continuación subimos el repositorio a la carpeta `docs/` que se acaba de generar. En la pestaña `settings` del repositorio ir al apartado de GitHub Pages y activar la opción **master branch /docs folder** 
